@@ -7,11 +7,6 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 const notoSansTC = Noto_Sans_TC({
   variable: "--font-noto-sans-tc",
   subsets: ["latin"],
@@ -58,7 +53,7 @@ export default function RootLayout({
   return (
     <html lang="zh-TW">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${notoSansTC.variable} font-sans text-gray-950 antialiased dark:text-gray-50`}
+        className={`${geistSans.variable} ${notoSansTC.variable} font-sans text-gray-950 antialiased dark:text-gray-50`}
       >
         {children}
       </body>
