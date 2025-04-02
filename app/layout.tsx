@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   description:
     "追蹤立法院各委員會總預算解凍進度，即時掌握最新動態。包含內政、外交及國防、經濟、財政、教育及文化、交通、司法及法制、社會福利及衛生環境等委員會的預算解凍狀況。",
   metadataBase: new URL("https://unfreeze.kmt.studio"),
+  icons: {
+    icon: "/favicon.png",
+  },
   openGraph: {
     title: "立法院總預算解凍進度",
     description:
