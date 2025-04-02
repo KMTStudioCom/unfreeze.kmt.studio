@@ -97,7 +97,9 @@ export default function UnfreezeTimer() {
         await navigator.clipboard.writeText(window.location.href);
         toast.success("已複製連結");
       }
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
