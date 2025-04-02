@@ -20,7 +20,7 @@ export default function CommitteeCard({ committee, data }: CommitteeCardProps) {
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Trigger asChild>
         <motion.button
-          className={`relative overflow-hidden rounded-xl bg-gray-100 text-gray-900 transition-colors hover:bg-gray-200 hover:text-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-300`}
+          className={`relative cursor-pointer overflow-hidden rounded-xl bg-gray-100 text-gray-900 transition-colors hover:bg-gray-200 hover:text-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-300`}
           whileHover={{
             scale: 1.05,
           }}
