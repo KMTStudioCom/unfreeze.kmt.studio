@@ -3,6 +3,7 @@
   "committees": [
     {
       "name": "內政委員會",
+      "slug": "interior",
       "emoji": "🏛️",
       "statusCounts": {
         "FROZEN": 125,
@@ -13,6 +14,7 @@
     },
     {
       "name": "外交及國防委員會",
+      "slug": "foreign-and-defense",
       "emoji": "🌏",
       "statusCounts": {
         "FROZEN": 379,
@@ -23,6 +25,7 @@
     },
     {
       "name": "經濟委員會",
+      "slug": "economics",
       "emoji": "📈",
       "statusCounts": {
         "FROZEN": 98,
@@ -33,6 +36,7 @@
     },
     {
       "name": "財政委員會",
+      "slug": "finance",
       "emoji": "💰",
       "statusCounts": {
         "FROZEN": 109,
@@ -43,6 +47,7 @@
     },
     {
       "name": "教育及文化委員會",
+      "slug": "education-and-culture",
       "emoji": "📚",
       "statusCounts": {
         "FROZEN": 122,
@@ -53,6 +58,7 @@
     },
     {
       "name": "交通委員會",
+      "slug": "transportation",
       "emoji": "🚆",
       "statusCounts": {
         "FROZEN": 84,
@@ -63,6 +69,7 @@
     },
     {
       "name": "司法及法制委員會",
+      "slug": "judiciary",
       "emoji": "⚖️",
       "statusCounts": {
         "FROZEN": 76,
@@ -73,6 +80,7 @@
     },
     {
       "name": "社會福利及衛生環境委員會",
+      "slug": "social-welfare-and-environmental-hygiene",
       "emoji": "🏥",
       "statusCounts": {
         "FROZEN": 420,

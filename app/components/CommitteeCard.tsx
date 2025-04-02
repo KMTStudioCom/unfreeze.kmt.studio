@@ -2,12 +2,13 @@ import { motion } from "motion/react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { CommitteeProgress } from "../types/unfreeze";
 import ProgressBar from "./ProgressBar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CommitteeDialog from "./CommitteeDialog";
 
 interface CommitteeCardProps {
   committee: {
     name: string;
+    slug: string;
     emoji: string;
   };
   data: CommitteeProgress;
@@ -16,8 +17,36 @@ interface CommitteeCardProps {
 export default function CommitteeCard({ committee, data }: CommitteeCardProps) {
   const [isOpen, setIsOpen] = useState(false);
 
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.slice(1);
+      setIsOpen(hash === committee.slug);
+    };
+
+    handleHashChange();
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, [committee.slug]);
+
+  const handleOpenChange = (open: boolean) => {
+    setIsOpen(open);
+    if (!open) {
+      // 如果目前的 hash 是這個委員會，才清除
+      const hash = window.location.hash.slice(1);
+      if (hash === committee.slug) {
+        history.pushState(
+          "",
+          document.title,
+          window.location.pathname + window.location.search,
+        );
+      }
+    } else {
+      window.location.hash = committee.slug;
+    }
+  };
+
   return (
-    <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog.Root open={isOpen} onOpenChange={handleOpenChange}>
       <Dialog.Trigger asChild>
         <motion.button
           className={`relative cursor-pointer overflow-hidden rounded-xl bg-gray-100 text-gray-900 transition-colors hover:bg-gray-200 hover:text-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-300`}
