@@ -1,0 +1,85 @@
+{
+  "startDate": "2025-03-21T08:00:00+08:00",
+  "committees": [
+    {
+      "name": "內政委員會",
+      "emoji": "🏛️",
+      "statusCounts": {
+        "FROZEN": 125,
+        "PENDING": 0,
+        "APPROVED": 0,
+        "UNFROZEN": 0
+      }
+    },
+    {
+      "name": "外交及國防委員會",
+      "emoji": "🌏",
+      "statusCounts": {
+        "FROZEN": 379,
+        "PENDING": 0,
+        "APPROVED": 0,
+        "UNFROZEN": 0
+      }
+    },
+    {
+      "name": "經濟委員會",
+      "emoji": "📈",
+      "statusCounts": {
+        "FROZEN": 98,
+        "PENDING": 0,
+        "APPROVED": 0,
+        "UNFROZEN": 0
+      }
+    },
+    {
+      "name": "財政委員會",
+      "emoji": "💰",
+      "statusCounts": {
+        "FROZEN": 109,
+        "PENDING": 0,
+        "APPROVED": 0,
+        "UNFROZEN": 0
+      }
+    },
+    {
+      "name": "教育及文化委員會",
+      "emoji": "📚",
+      "statusCounts": {
+        "FROZEN": 122,
+        "PENDING": 0,
+        "APPROVED": 0,
+        "UNFROZEN": 0
+      }
+    },
+    {
+      "name": "交通委員會",
+      "emoji": "🚆",
+      "statusCounts": {
+        "FROZEN": 84,
+        "PENDING": 0,
+        "APPROVED": 0,
+        "UNFROZEN": 0
+      }
+    },
+    {
+      "name": "司法及法制委員會",
+      "emoji": "⚖️",
+      "statusCounts": {
+        "FROZEN": 76,
+        "PENDING": 0,
+        "APPROVED": 0,
+        "UNFROZEN": 0
+      }
+    },
+    {
+      "name": "社會福利及衛生環境委員會",
+      "emoji": "🏥",
+      "statusCounts": {
+        "FROZEN": 420,
+        "PENDING": 0,
+        "APPROVED": 0,
+        "UNFROZEN": 0
+      }
+    }
+  ]
+}
