@@ -101,7 +101,7 @@ export default function UnfreezeTimer() {
             </span>
           </div>
           <div className="flex items-center gap-2 text-right">
-            <span className="text-primary dark:text-primary inline-block text-sm font-semibold">
+            <span className="text-primary dark:text-primary inline-block text-sm">
               已解凍{" "}
               {(
                 (TOTAL_PROGRESS.statusCounts[UnfreezeStatus.UNFROZEN] /
@@ -122,10 +122,10 @@ export default function UnfreezeTimer() {
           />
         </div>
         <div className="mt-2 flex items-center justify-between gap-2 text-sm">
-          <span className="inline-block font-semibold text-gray-600 dark:text-gray-400">
+          <span className="inline-block text-gray-600 dark:text-gray-400">
             {TOTAL_PROGRESS.statusCounts[UnfreezeStatus.PENDING]} 案已送件
           </span>{" "}
-          <span className="inline-block font-semibold text-gray-600 dark:text-gray-400">
+          <span className="inline-block text-gray-600 dark:text-gray-400">
             {TOTAL_PROGRESS.statusCounts[UnfreezeStatus.UNFROZEN]} /{" "}
             {TOTAL_PROGRESS.totalCases} 案
           </span>

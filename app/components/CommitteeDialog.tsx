@@ -64,7 +64,7 @@ export default function CommitteeDialog({
                     <span className="text-sm font-semibold text-gray-700 dark:text-gray-200">
                       解凍進度
                     </span>
-                    <span className="text-primary text-sm font-semibold">
+                    <span className="text-primary text-sm">
                       {data.progress}%
                     </span>
                   </div>
@@ -86,10 +86,10 @@ export default function CommitteeDialog({
                     }}
                   />
                   <div className="mt-2 flex items-center justify-between gap-2 text-sm">
-                    <span className="inline-block font-semibold text-gray-600 dark:text-gray-400">
+                    <span className="inline-block text-gray-600 dark:text-gray-400">
                       {data.statusCounts.PENDING} 案已送件
                     </span>
-                    <span className="inline-block font-semibold text-gray-600 dark:text-gray-400">
+                    <span className="inline-block text-gray-600 dark:text-gray-400">
                       {data.statusCounts.UNFROZEN} / {data.totalCases} 案
                     </span>
                   </div>
@@ -97,58 +97,58 @@ export default function CommitteeDialog({
 
                 {/* 詳細資訊 */}
                 <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-                  <div className="rounded-lg bg-gray-100 p-4 dark:bg-gray-700">
-                    <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
-                      案件總數
-                    </h3>
+                  <div className="rounded-lg bg-gray-100 px-4 py-3 dark:bg-gray-700">
                     <p className="text-primary text-3xl font-semibold">
                       {data.totalCases}
                     </p>
+                    <h3 className="text-lg text-gray-900 dark:text-white">
+                      總數
+                    </h3>
                   </div>
                   <div
                     data-status="pending"
-                    className={`rounded-lg bg-gray-100 p-4 transition-all duration-200 dark:bg-gray-700 ${
+                    className={`rounded-lg bg-gray-100 px-4 py-3 transition-all duration-200 dark:bg-gray-700 ${
                       activeStatus === "pending"
                         ? "ring-2 ring-blue-500 ring-offset-2 dark:ring-offset-gray-800"
                         : ""
                     }`}
                   >
-                    <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
-                      等待審議
-                    </h3>
                     <p className="text-3xl font-semibold text-blue-500">
                       {data.statusCounts.PENDING}
                     </p>
+                    <h3 className="text-lg text-gray-900 dark:text-white">
+                      等待審議
+                    </h3>
                   </div>
                   <div
                     data-status="approved"
-                    className={`rounded-lg bg-gray-100 p-4 transition-all duration-200 dark:bg-gray-700 ${
+                    className={`rounded-lg bg-gray-100 px-4 py-3 transition-all duration-200 dark:bg-gray-700 ${
                       activeStatus === "approved"
                         ? "ring-2 ring-orange-500 ring-offset-2 dark:ring-offset-gray-800"
                         : ""
                     }`}
                   >
-                    <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
-                      審議通過
-                    </h3>
                     <p className="text-3xl font-semibold text-orange-500">
                       {data.statusCounts.APPROVED}
                     </p>
+                    <h3 className="text-lg text-gray-900 dark:text-white">
+                      審議通過
+                    </h3>
                   </div>
                   <div
                     data-status="unfreezed"
-                    className={`rounded-lg bg-gray-100 p-4 transition-all duration-200 dark:bg-gray-700 ${
+                    className={`rounded-lg bg-gray-100 px-4 py-3 transition-all duration-200 dark:bg-gray-700 ${
                       activeStatus === "unfreezed"
                         ? "ring-2 ring-green-500 ring-offset-2 dark:ring-offset-gray-800"
                         : ""
                     }`}
                   >
-                    <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
-                      已解凍案件
-                    </h3>
                     <p className="text-3xl font-semibold text-green-500">
                       {data.statusCounts.UNFROZEN}
                     </p>
+                    <h3 className="text-lg text-gray-900 dark:text-white">
+                      已解凍
+                    </h3>
                   </div>
                 </div>
               </div>
