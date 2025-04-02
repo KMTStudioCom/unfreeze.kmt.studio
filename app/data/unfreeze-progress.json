@@ -3,7 +3,7 @@
   "committees": [
     {
       "name": "內政委員會",
-      "slug": "interior",
+      "slug": "internal-administration",
       "emoji": "🏛️",
       "statusCounts": {
         "FROZEN": 125,
@@ -14,7 +14,7 @@
     },
     {
       "name": "外交及國防委員會",
-      "slug": "foreign-and-defense",
+      "slug": "foreign-and-national-defense",
       "emoji": "🌏",
       "statusCounts": {
         "FROZEN": 379,
@@ -69,7 +69,7 @@
     },
     {
       "name": "司法及法制委員會",
-      "slug": "judiciary",
+      "slug": "judiciary-and-organic-laws-and-statutes",
       "emoji": "⚖️",
       "statusCounts": {
         "FROZEN": 76,
