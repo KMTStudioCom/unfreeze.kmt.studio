@@ -88,7 +88,7 @@ export default function UnfreezeTimer() {
           距離總統公告總預算已經過了
         </p>
         <div className="text-2xl font-semibold text-gray-700 dark:text-gray-200">
-          {elapsedTime}
+          {elapsedTime || `0天 0小時 0分`}
         </div>
       </div>
 
