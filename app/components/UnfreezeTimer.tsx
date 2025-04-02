@@ -70,7 +70,7 @@ export default function UnfreezeTimer() {
       );
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
 
-      setElapsedTime(`${days}天 ${hours}小時 ${minutes}分鐘`);
+      setElapsedTime(`${days}天 ${hours}小時 ${minutes}分`);
     };
 
     updateTimer();
@@ -80,29 +80,28 @@ export default function UnfreezeTimer() {
 
   return (
     <div className="mx-auto w-full max-w-2xl space-y-6 p-6 md:p-12">
-      <div className="space-y-2 text-center">
-        <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
-          總預算解凍進度
-        </h2>
+      <h2 className="text-center text-4xl font-semibold text-gray-900 dark:text-white">
+        總預算解凍進度
+      </h2>
+      <div className="space-y-2 rounded-xl bg-gray-100 p-4 text-center dark:bg-gray-800">
         <p className="text-lg text-gray-700 dark:text-gray-200">
-          距離總統公告總預算已經過了 {elapsedTime}
+          距離總統公告總預算已經過了
         </p>
+        <div className="text-2xl font-semibold text-gray-700 dark:text-gray-200">
+          {elapsedTime}
+        </div>
       </div>
 
       {/* 總進度條 */}
       <div className="relative pt-1">
-        <div className="mb-2 flex items-center justify-between">
+        <div className="mb-2 flex items-end justify-between">
           <div className="text-right">
-            <span className="font-semisemibold inline-block text-xs text-gray-700 dark:text-gray-200">
+            <span className="inline-block text-lg font-semibold text-gray-700 dark:text-gray-200">
               總體進度
             </span>
           </div>
           <div className="flex items-center gap-2 text-right">
-            <span className="font-semisemibold inline-block text-xs text-gray-600 dark:text-gray-400">
-              {TOTAL_PROGRESS.statusCounts[UnfreezeStatus.UNFROZEN]} /{" "}
-              {TOTAL_PROGRESS.totalCases} 案
-            </span>
-            <span className="text-primary dark:text-primary font-semisemibold inline-block text-xs">
+            <span className="text-primary dark:text-primary inline-block text-sm font-semibold">
               已解凍{" "}
               {(
                 (TOTAL_PROGRESS.statusCounts[UnfreezeStatus.UNFROZEN] /
@@ -121,6 +120,15 @@ export default function UnfreezeTimer() {
             total={TOTAL_PROGRESS.totalCases}
             height="lg"
           />
+        </div>
+        <div className="mt-2 flex items-center justify-between gap-2 text-sm">
+          <span className="inline-block font-semibold text-gray-600 dark:text-gray-400">
+            {TOTAL_PROGRESS.statusCounts[UnfreezeStatus.PENDING]} 案已送件
+          </span>{" "}
+          <span className="inline-block font-semibold text-gray-600 dark:text-gray-400">
+            {TOTAL_PROGRESS.statusCounts[UnfreezeStatus.UNFROZEN]} /{" "}
+            {TOTAL_PROGRESS.totalCases} 案
+          </span>
         </div>
       </div>
 

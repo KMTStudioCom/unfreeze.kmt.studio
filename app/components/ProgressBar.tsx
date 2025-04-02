@@ -111,7 +111,7 @@ function ProgressBarComponent({
   return (
     <Tooltip.Provider delayDuration={200}>
       <div
-        className={`${heightClass[height]} flex overflow-hidden ${rounded ? "rounded-full" : ""} bg-gray-200 dark:bg-gray-700`}
+        className={`${heightClass[height]} flex overflow-hidden ${rounded ? "rounded-full" : ""} bg-gray-400/30 dark:bg-gray-500/30`}
       >
         <Bar
           value={pending}
