@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({
 
 const notoSansTC = Noto_Sans_TC({
   variable: "--font-noto-sans-tc",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
