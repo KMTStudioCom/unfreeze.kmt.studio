@@ -4,6 +4,7 @@ import { UnfreezeStatus, type CommitteeProgress } from "../types/unfreeze";
 import unfreezeData from "../data/unfreeze-progress.json";
 import ProgressBar from "./ProgressBar";
 import CommitteeCard from "./CommitteeCard";
+import { toast } from "sonner";
 
 const START_DATE = new Date(unfreezeData.startDate);
 const COMMITTEES = unfreezeData.committees;
@@ -78,11 +79,54 @@ export default function UnfreezeTimer() {
     return () => clearInterval(timer);
   }, []);
 
+  const handleShare = async () => {
+    const shareData = {
+      title: "總預算解凍進度",
+      text: `總預算解凍進度：${(
+        (TOTAL_PROGRESS.statusCounts[UnfreezeStatus.UNFROZEN] /
+          TOTAL_PROGRESS.totalCases) *
+        100
+      ).toFixed(1)}%`,
+      url: window.location.href,
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(window.location.href);
+        toast.success("已複製連結");
+      }
+    } catch (error) {}
+  };
+
   return (
     <div className="mx-auto w-full max-w-2xl space-y-6 p-6 md:p-12">
-      <h2 className="text-center text-4xl font-semibold text-gray-900 dark:text-white">
-        總預算解凍進度
-      </h2>
+      <div className="flex items-center justify-between">
+        <h2 className="text-center text-4xl font-semibold text-gray-900 dark:text-white">
+          總預算解凍進度
+        </h2>
+        <button
+          onClick={handleShare}
+          className="rounded-full p-2 text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800"
+          aria-label="分享"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="h-6 w-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z"
+            />
+          </svg>
+        </button>
+      </div>
       <div className="space-y-2 rounded-xl bg-gray-100 p-4 text-center dark:bg-gray-800">
         <p className="text-lg text-gray-700 dark:text-gray-200">
           距離總統公告總預算已經過了

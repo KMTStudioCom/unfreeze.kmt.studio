@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Noto_Sans_TC } from "next/font/google";
+import { Toaster } from "sonner";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -56,6 +57,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${notoSansTC.variable} font-sans text-gray-950 antialiased dark:text-gray-50`}
       >
         {children}
+        <Toaster richColors position="top-right" />
       </body>
     </html>
   );
