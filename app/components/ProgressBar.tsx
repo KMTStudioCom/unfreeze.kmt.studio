@@ -1,6 +1,5 @@
 import { motion } from "motion/react";
 import * as Tooltip from "@radix-ui/react-tooltip";
-import { UnfreezeStatus } from "../types/unfreeze";
 import { memo } from "react";
 
 const tooltipAnimation = {
