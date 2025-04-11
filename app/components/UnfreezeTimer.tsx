@@ -70,12 +70,13 @@ export default function UnfreezeTimer() {
         (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
       );
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-      setElapsedTime(`${days}天 ${hours}小時 ${minutes}分`);
+      setElapsedTime(`${days}天 ${hours}小時 ${minutes}分 ${seconds}秒`);
     };
 
     updateTimer();
-    const timer = setInterval(updateTimer, 60000);
+    const timer = setInterval(updateTimer, 1000);
     return () => clearInterval(timer);
   }, []);
 
@@ -134,7 +135,7 @@ export default function UnfreezeTimer() {
           距離總統公告總預算已經過了
         </p>
         <div className="text-2xl font-semibold text-gray-700 dark:text-gray-200">
-          {elapsedTime || `0天 0小時 0分`}
+          {elapsedTime || `0天 0小時 0分 0秒`}
         </div>
       </div>
 
