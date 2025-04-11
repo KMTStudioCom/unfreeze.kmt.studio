@@ -22,3 +22,26 @@ body {
   background: var(--background);
   color: var(--foreground);
 }
+
+@keyframes throw {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-20deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(20deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-throw {
+  animation: throw 0.2s ease-in-out;
+  transform-origin: center bottom;
+}
