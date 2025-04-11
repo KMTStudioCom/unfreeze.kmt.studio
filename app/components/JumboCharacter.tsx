@@ -19,6 +19,18 @@ export default function JumboCharacter() {
     imageLoaded: false
   });
 
+  // 點擊彩蛋功能
+  const triggerJump = () => {
+    if (!characterState.current.isJumping) {
+      characterState.current.isJumping = true;
+      characterState.current.jumpStartTime = Date.now();
+      
+      setTimeout(() => {
+        characterState.current.isJumping = false;
+      }, characterState.current.jumpDuration);
+    }
+  };
+
   useEffect(() => {
     // 載入角色圖片
     const img = new Image();
@@ -41,8 +53,57 @@ export default function JumboCharacter() {
         characterState.current.containerHeight = canvas.height;
       }
     };
+
+    // 設置點擊監聽器 - 彩蛋功能
+    const handleClick = (e: MouseEvent) => {
+      if (canvasRef.current && characterState.current.image) {
+        const canvas = canvasRef.current;
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        // 角色位置和尺寸
+        const charX = characterState.current.position;
+        const charY = canvas.height - 64; // 角色高度
+        const charWidth = 64;
+        const charHeight = 64;
+        
+        // 檢查是否點擊了角色
+        if (x >= charX && x <= charX + charWidth && 
+            y >= charY && y <= charY + charHeight) {
+          triggerJump();
+        }
+      }
+    };
+    
+    // 設置觸摸監聽器 - 移動設備支持
+    const handleTouch = (e: TouchEvent) => {
+      if (e.touches.length > 0 && canvasRef.current && characterState.current.image) {
+        const canvas = canvasRef.current;
+        const rect = canvas.getBoundingClientRect();
+        const x = e.touches[0].clientX - rect.left;
+        const y = e.touches[0].clientY - rect.top;
+        
+        // 角色位置和尺寸
+        const charX = characterState.current.position;
+        const charY = canvas.height - 64; // 角色高度
+        const charWidth = 64;
+        const charHeight = 64;
+        
+        // 檢查是否點擊了角色
+        if (x >= charX && x <= charX + charWidth && 
+            y >= charY && y <= charY + charHeight) {
+          triggerJump();
+          e.preventDefault(); // 防止觸發滾動等行為
+        }
+      }
+    };
     
     window.addEventListener('resize', updateCanvasSize);
+    if (canvasRef.current) {
+      canvasRef.current.addEventListener('click', handleClick);
+      canvasRef.current.addEventListener('touchstart', handleTouch);
+    }
     updateCanvasSize();
     
     let lastTimestamp = 0;
@@ -93,12 +154,7 @@ export default function JumboCharacter() {
       
       // 隨機跳躍 - 增加跳躍機率
       if (Math.random() < 0.0055 * deltaTime / 16 && !isJumping) {
-        characterState.current.isJumping = true;
-        characterState.current.jumpStartTime = Date.now();
-        
-        setTimeout(() => {
-          characterState.current.isJumping = false;
-        }, characterState.current.jumpDuration);
+        triggerJump();
       }
       
       // 計算Y位置 (跳躍效果)
@@ -137,6 +193,10 @@ export default function JumboCharacter() {
     // 清理
     return () => {
       window.removeEventListener('resize', updateCanvasSize);
+      if (canvasRef.current) {
+        canvasRef.current.removeEventListener('click', handleClick);
+        canvasRef.current.removeEventListener('touchstart', handleTouch);
+      }
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
@@ -150,7 +210,8 @@ export default function JumboCharacter() {
         className="absolute bottom-0 left-0 w-full"
         style={{
           imageRendering: 'crisp-edges',
-          touchAction: 'none'
+          touchAction: 'none',
+          pointerEvents: 'auto' // 允許接收點擊事件
         }}
       />
     </div>
