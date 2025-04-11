@@ -10,6 +10,7 @@ export default function JumboCharacter() {
   const [direction, setDirection] = useState(1); // 1 for right, -1 for left
   const containerRef = useRef<HTMLDivElement>(null);
   const characterRef = useRef<HTMLDivElement>(null);
+  const animationFrameRef = useRef<number>();
 
   useEffect(() => {
     const moveCharacter = () => {
@@ -41,13 +42,20 @@ export default function JumboCharacter() {
       }
     };
 
-    const animationFrame = requestAnimationFrame(() => {
+    const animate = () => {
       moveCharacter();
       jumpRandomly();
       throwRandomly();
-    });
+      animationFrameRef.current = requestAnimationFrame(animate);
+    };
 
-    return () => cancelAnimationFrame(animationFrame);
+    animationFrameRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
   }, [position, direction, isJumping, isThrowing]);
 
   return (
@@ -57,7 +65,7 @@ export default function JumboCharacter() {
     >
       <div
         ref={characterRef}
-        className="absolute bottom-0 transition-all duration-100"
+        className="absolute bottom-0 transition-all duration-100 will-change-transform"
         style={{
           transform: `translateX(${position}px) translateY(${isJumping ? '-40px' : '0'})`,
           left: 0,
