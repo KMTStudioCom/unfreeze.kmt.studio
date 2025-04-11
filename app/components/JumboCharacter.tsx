@@ -10,7 +10,7 @@ export default function JumboCharacter() {
   const [direction, setDirection] = useState(1); // 1 for right, -1 for left
   const containerRef = useRef<HTMLDivElement>(null);
   const characterRef = useRef<HTMLDivElement>(null);
-  const animationFrameRef = useRef<number>();
+  const animationFrameRef = useRef<number | null>(null);
 
   useEffect(() => {
     const moveCharacter = () => {
