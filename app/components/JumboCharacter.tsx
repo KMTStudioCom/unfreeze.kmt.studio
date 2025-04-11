@@ -11,7 +11,8 @@ export default function JumboCharacter() {
     position: 0,
     direction: 1,
     isJumping: false,
-    isThrowing: false,
+    jumpStartTime: 0,
+    jumpDuration: 450, // 跳躍持續時間(毫秒)
     containerWidth: 0,
     containerHeight: 0,
     image: null as HTMLImageElement | null,
@@ -31,16 +32,13 @@ export default function JumboCharacter() {
     const updateCanvasSize = () => {
       if (canvasRef.current) {
         const canvas = canvasRef.current;
-        const container = canvas.parentElement;
         
-        if (container) {
-          // 清除先前的配置
-          canvas.width = window.innerWidth;
-          canvas.height = 80; // 足夠的高度放置角色
-          
-          characterState.current.containerWidth = window.innerWidth;
-          characterState.current.containerHeight = 80;
-        }
+        // 設置Canvas尺寸為視窗寬度和足夠高度
+        canvas.width = window.innerWidth;
+        canvas.height = 120; // 足夠的高度讓角色跳躍
+        
+        characterState.current.containerWidth = canvas.width;
+        characterState.current.containerHeight = canvas.height;
       }
     };
     
@@ -81,7 +79,7 @@ export default function JumboCharacter() {
       const characterHeight = 64;
       
       // 使用時間差計算移動距離
-      const speed = 0.1; // 降低速度
+      const speed = 0.18; // 移動速度
       const distance = speed * deltaTime * direction;
       let newPosition = position + distance;
       
@@ -93,18 +91,29 @@ export default function JumboCharacter() {
       
       characterState.current.position = newPosition;
       
-      // 隨機跳躍
-      if (Math.random() < 0.001 * deltaTime / 16 && !isJumping) {
+      // 隨機跳躍 - 增加跳躍機率
+      if (Math.random() < 0.0055 * deltaTime / 16 && !isJumping) {
         characterState.current.isJumping = true;
+        characterState.current.jumpStartTime = Date.now();
+        
         setTimeout(() => {
           characterState.current.isJumping = false;
-        }, 400);
+        }, characterState.current.jumpDuration);
       }
       
       // 計算Y位置 (跳躍效果)
-      const jumpHeight = isJumping ? -40 * Math.sin(Date.now() % 400 / 400 * Math.PI) : 0;
+      let jumpHeight = 0;
       
-      // 繪製角色
+      // 簡單跳躍動畫
+      if (isJumping) {
+        const jumpProgress = (Date.now() - characterState.current.jumpStartTime) / characterState.current.jumpDuration;
+        if (jumpProgress <= 1) {
+          // 拋物線跳躍，模擬簡單重力效果
+          jumpHeight = -60 * Math.sin(jumpProgress * Math.PI);
+        }
+      }
+      
+      // 繪製角色 - 確保底部完全貼合Canvas底部
       const drawX = position;
       const drawY = canvasRef.current.height - characterHeight + jumpHeight;
       
@@ -135,10 +144,10 @@ export default function JumboCharacter() {
   }, []);
 
   return (
-    <div className="fixed bottom-0 left-0 w-full overflow-visible pointer-events-none z-50">
+    <div className="fixed bottom-0 left-0 w-full overflow-visible pointer-events-none" style={{ height: '120px' }}>
       <canvas 
         ref={canvasRef}
-        className="w-full"
+        className="absolute bottom-0 left-0 w-full"
         style={{
           imageRendering: 'crisp-edges',
           touchAction: 'none'
