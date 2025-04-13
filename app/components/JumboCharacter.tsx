@@ -12,7 +12,7 @@ export default function JumboCharacter() {
     direction: 1,
     isJumping: false,
     jumpStartTime: 0,
-    jumpDuration: 450, // 跳躍持續時間(毫秒)
+    jumpDuration: 450, // 跳躍持續時間（毫秒）
     containerWidth: 0,
     containerHeight: 0,
     image: null as HTMLImageElement | null,
@@ -40,12 +40,12 @@ export default function JumboCharacter() {
       characterState.current.imageLoaded = true;
     };
     
-    // 設置容器尺寸
+    // 設定容器尺寸
     const updateCanvasSize = () => {
       if (canvasRef.current) {
         const canvas = canvasRef.current;
         
-        // 設置Canvas尺寸為視窗寬度和足夠高度
+        // 設定Canvas尺寸為視窗寬度和足夠高度
         canvas.width = window.innerWidth;
         canvas.height = 120; // 足夠的高度讓角色跳躍
         
@@ -54,7 +54,7 @@ export default function JumboCharacter() {
       }
     };
 
-    // 設置點擊監聽器 - 彩蛋功能
+    // 設定點擊監聽器 - 彩蛋功能
     const handleClick = (e: MouseEvent) => {
       if (canvasRef.current && characterState.current.image) {
         const canvas = canvasRef.current;
@@ -76,7 +76,7 @@ export default function JumboCharacter() {
       }
     };
     
-    // 設置觸摸監聽器 - 移動設備支持
+    // 設定觸控監聽器 - 行動裝置支援
     const handleTouch = (e: TouchEvent) => {
       if (e.touches.length > 0 && canvasRef.current && characterState.current.image) {
         const canvas = canvasRef.current;
