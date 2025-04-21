@@ -1,3 +1,5 @@
+![](https://ipfs.juchunko.com/ipfs/bafybeibwy4brirntqqlqzhygqgrpk37oxfzyouyfvzqdjmwbrwqhjx23dq)
+
 # 解凍進度儀表板
 
 這是一個用於追蹤立法院委員會法案解凍進度的儀表板網站。使用 Next.js 建置。
