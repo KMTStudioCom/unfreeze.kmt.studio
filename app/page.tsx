@@ -1,5 +1,3 @@
-import type { Metadata } from 'next'
-import Link from 'next/link'
 import JumboCharacter from './components/JumboCharacter'
 import JumboChoCharacter from './components/JumboChoCharacter'
 import UnfreezeTimer from "./components/UnfreezeTimer";

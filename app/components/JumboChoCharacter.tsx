@@ -100,9 +100,10 @@ export default function JumboChoCharacter() {
     };
     
     window.addEventListener('resize', updateCanvasSize);
-    if (canvasRef.current) {
-      canvasRef.current.addEventListener('click', handleClick);
-      canvasRef.current.addEventListener('touchstart', handleTouch);
+    const canvas = canvasRef.current;
+    if (canvas) {
+      canvas.addEventListener('click', handleClick);
+      canvas.addEventListener('touchstart', handleTouch);
     }
     updateCanvasSize();
     
@@ -193,9 +194,9 @@ export default function JumboChoCharacter() {
     // 清理
     return () => {
       window.removeEventListener('resize', updateCanvasSize);
-      if (canvasRef.current) {
-        canvasRef.current.removeEventListener('click', handleClick);
-        canvasRef.current.removeEventListener('touchstart', handleTouch);
+      if (canvas) {
+        canvas.removeEventListener('click', handleClick);
+        canvas.removeEventListener('touchstart', handleTouch);
       }
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
