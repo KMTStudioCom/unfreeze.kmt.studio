@@ -34,7 +34,7 @@ export default function JumboChoCharacter() {
   useEffect(() => {
     // 載入角色圖片
     const img = new Image();
-    img.src = '/jumbo-cho.png';
+    img.src = '/jumbo-cho146-r.png';
     img.onload = () => {
       characterState.current.image = img;
       characterState.current.imageLoaded = true;
