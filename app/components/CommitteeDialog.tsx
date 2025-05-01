@@ -4,6 +4,7 @@ import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import { CommitteeProgress } from "../types/unfreeze";
 import ProgressBar from "./ProgressBar";
 import { useState } from "react";
+import * as Tooltip from "@radix-ui/react-tooltip";
 
 interface CommitteeDialogProps {
   committee: {
@@ -86,8 +87,43 @@ export default function CommitteeDialog({
                     }}
                   />
                   <div className="mt-2 flex items-center justify-between gap-2 text-sm">
-                    <span className="inline-block text-gray-600 dark:text-gray-400">
+                    <span className="inline-flex items-center gap-1 text-gray-600 dark:text-gray-400">
                       {data.statusCounts.PENDING} 案已送件
+                      <Tooltip.Root>
+                        <Tooltip.Trigger asChild>
+                          <button
+                            className="inline-flex h-4 w-4 items-center justify-center rounded-full text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300"
+                            aria-label="案件送件說明"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              strokeWidth={1.5}
+                              stroke="currentColor"
+                              className="h-4 w-4"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
+                              />
+                            </svg>
+                          </button>
+                        </Tooltip.Trigger>
+                        <Tooltip.Portal>
+                          <Tooltip.Content
+                            sideOffset={5}
+                            className="rounded-lg border-2 border-gray-200 bg-white px-2 py-1 text-sm text-gray-900 shadow-lg dark:border-gray-500 dark:bg-gray-700 dark:text-white"
+                          >
+                            <div className="max-w-xs">
+                              <p>
+                                行政院各部會單位目前送 1,288 案至立法院程序委員會，立法院議事單位及行政單位正在計算每個案件狀態及隸屬委員會，相關數字計算中。
+                              </p>
+                            </div>
+                          </Tooltip.Content>
+                        </Tooltip.Portal>
+                      </Tooltip.Root>
                     </span>
                     <span className="inline-block text-gray-600 dark:text-gray-400">
                       {data.statusCounts.UNFROZEN} / {data.totalCases} 案
@@ -114,7 +150,7 @@ export default function CommitteeDialog({
                     }`}
                   >
                     <p className="text-3xl font-semibold text-blue-500">
-                      {data.statusCounts.PENDING}
+                      計算中
                     </p>
                     <h3 className="text-lg text-gray-900 dark:text-white">
                       等待審議
