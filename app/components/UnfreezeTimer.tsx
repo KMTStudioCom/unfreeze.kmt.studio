@@ -104,6 +104,15 @@ export default function UnfreezeTimer() {
   return (
     <Tooltip.Provider>
       <div className="mx-auto w-full max-w-2xl space-y-6 p-6 md:p-12">
+        {/* 模糊遮罩層 */}
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/80 backdrop-blur-xl dark:bg-gray-900/80">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold tracking-wider text-gray-900 dark:text-white md:text-6xl">
+              解凍進行中，敬請期待。
+            </h1>
+          </div>
+        </div>
+
         <div className="flex items-center justify-between">
           <h2 className="text-center text-4xl font-semibold text-gray-900 dark:text-white">
             總預算解凍進度
