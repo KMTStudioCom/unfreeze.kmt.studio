@@ -53,7 +53,6 @@ const TOTAL_PROGRESS = {
 };
 
 const OFFICIAL_TOTAL_CASES = 1584;
-const UNCLASSIFIED_CASES = OFFICIAL_TOTAL_CASES - TOTAL_PROGRESS.totalCases;
 
 export default function UnfreezeTimer() {
   const [elapsedTime, setElapsedTime] = useState("");
